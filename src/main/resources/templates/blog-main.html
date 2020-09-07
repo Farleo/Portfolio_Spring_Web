@@ -1,41 +1,37 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title th:text="${title}"/>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
-
 <main role="main">
-
-    <div th:each="interest,rowStatus : ${articles}" class="row interest-featured" th:if="${rowStatus.index % 3} == 0">
+    <div th:each="interest,rowStatus : ${articles}" class="row interest-featured m-auto" th:if="${rowStatus.index % 3} == 0">
         <div th:each="interest,interestStatus : ${articles}" class="col-md-4"
-             th:if="${interestStatus.index lt rowStatus.index + 3 and interestStatus.index ge rowStatus.index}">
-             <div class="card mb-4 shadow-sm">
-                    <img alt="..." class="card-img border" height="225" th:src="${interest.coverPhoto}" width="100%">
-                    <div class="card-body">
-                        <h3 th:text="${interest.title}"></h3>
-                        <p th:text="${interest.info}"></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a th:href="'/blog/' + ${interest.id}">
-                                    <button class="btn btn-sm btn-outline-secondary" type="button">Детальніше
-                                    </button>
-                                </a>
-                                <button class="btn btn-sm btn-outline-secondary" type="button">Edit</button>
-                            </div>
-                            <small class="fa fa-eye" th:text="${interest.views}"></small>
-                            <small class="fa fa-thumbs-o-up" th:text="${interest.likes}"></small>
+             th:if="${interestStatus.index lt rowStatus.index + 3 and interestStatus.index ge rowStatus.index}" >
+            <div class="card mb-4 shadow-sm">
+                <img alt="..." class="card-img border" height="350"  width="auto" th:src="${interest.coverPhoto}">
+                <div class="card-body">
+                    <h3 th:text="${interest.title}"></h3>
+                    <p th:text="${interest.info}"></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a th:href="'/blog/' + ${interest.id}">
+                                <button class="btn btn-sm btn-outline-dark" type="button">View
+                                </button>
+                            </a>
+                            <button class="btn btn-sm btn-outline-dark" type="button">Edit</button>
                         </div>
+                        <small class="fa fa-eye" th:text="'  ' + ${interest.views}"></small>
+                        <small class="fa fa-thumbs-o-up" th:text="'  ' + ${interest.likes}"></small>
                     </div>
-             </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>
-
 <div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>
