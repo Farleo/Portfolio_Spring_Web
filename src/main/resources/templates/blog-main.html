@@ -11,36 +11,29 @@
 
 <main role="main">
 
-    <div class="album py-5 bg-light">
-        <div th:each="el : ${articles}">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img alt="..." class="card-img border" height="225" th:src="${el.coverPhoto}" width="100%">
-                            <div class="card-body">
-                                <h3 th:text="${el.title}"></h3>
-                                <p th:text="${el.info}"></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a th:href="'/blog/' + ${el.id}">
-                                            <button class="btn btn-sm btn-outline-secondary" type="button">Детальніше
-                                            </button>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-secondary" type="button">Edit</button>
-                                    </div>
-                                    <small class="fa fa-eye" th:text="${el.views}"></small>
-                                    <small class="fa fa-thumbs-o-up" th:text="${el.likes}"></small>
-                                </div>
+    <div th:each="interest,rowStatus : ${articles}" class="row interest-featured" th:if="${rowStatus.index % 3} == 0">
+        <div th:each="interest,interestStatus : ${articles}" class="col-md-4"
+             th:if="${interestStatus.index lt rowStatus.index + 3 and interestStatus.index ge rowStatus.index}">
+             <div class="card mb-4 shadow-sm">
+                    <img alt="..." class="card-img border" height="225" th:src="${interest.coverPhoto}" width="100%">
+                    <div class="card-body">
+                        <h3 th:text="${interest.title}"></h3>
+                        <p th:text="${interest.info}"></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a th:href="'/blog/' + ${interest.id}">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button">Детальніше
+                                    </button>
+                                </a>
+                                <button class="btn btn-sm btn-outline-secondary" type="button">Edit</button>
                             </div>
+                            <small class="fa fa-eye" th:text="${interest.views}"></small>
+                            <small class="fa fa-thumbs-o-up" th:text="${interest.likes}"></small>
                         </div>
                     </div>
-                </div>
-                </div>
-            </div>
+             </div>
         </div>
     </div>
-
 </main>
 
 <div th:insert="blocks/footer :: footer"></div>
