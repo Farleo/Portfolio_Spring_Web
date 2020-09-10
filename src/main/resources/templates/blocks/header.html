@@ -1,8 +1,8 @@
 <div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/jquery/jquery-3.5.1.slim.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-3.5.1.slim.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <style>
         body{
             padding-top:60px;
@@ -12,33 +12,50 @@
             body { padding-top: 60px; }
         }
         @media screen and (min-width:768px) and (max-width: 991px) {
-            body { padding-top: 110px; }
+            body { padding-top: 60px; }
         }
         @media screen and (min-width: 992px) {
             body { padding-top: 60px; }
         }
     </style>
-    <nav class="navbar fixed-top navbar-light bg-light">
-        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/">Lutsiuk.tk</a></h5>
-        <div class="btn-group">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Lutsiuk Taras</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <a class="text-dark" href="/"><button type="button" class="btn btn-light" aria-haspopup="true" aria-expanded="false">Home</button></a>
-            <a class="text-dark" href="/database"><button type="button" class="btn btn-light" aria-haspopup="true" aria-expanded="false">Database</button></a>
-            <a class="text-dark" href="/blog"><button type="button" class="btn btn-light" aria-haspopup="true" aria-expanded="false">Blog</button></a>
-            <a class="text-dark" href="/about"><button type="button" class="btn btn-light" aria-haspopup="true" aria-expanded="false">About</button></a>
-            <div class="dropdown">
-                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Edit
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Edit 1</a>
-                    <a class="dropdown-item" href="#">Edit 2</a>
-                    <a class="dropdown-item" href="#">Edit 3</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Edit 4</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="text-dark" href="/"><button type="button" class="btn btn-light" aria-haspopup="true" aria-expanded="false">Home</button></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="text-dark" href="/database"><button type="button" class="btn btn-light" aria-haspopup="true" aria-expanded="false">Database</button></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="text-dark" href="/blog"><button type="button" class="btn btn-light" aria-haspopup="true" aria-expanded="false">Blog</button></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="text-dark" href="/about"><button type="button" class="btn btn-light" aria-haspopup="true" aria-expanded="false">About</button></a>
+                    </li>
+
+                    <li class="nav-item active dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline">
+                    <input class="form-control ml-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success ml-2" type="submit">Search</button>
+                </form>
+                <div class="nav-item">
+                    <a class="btn btn-outline-dark ml-2" href="/login">Sign up</a>
                 </div>
             </div>
-        </div>
-        <a class="btn btn-light" href="/login">Sign up</a>
-    </nav>
+        </nav>
 </div>
