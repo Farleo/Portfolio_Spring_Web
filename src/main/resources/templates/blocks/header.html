@@ -1,24 +1,11 @@
 <div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
-    <script type="text/javascript" src="jquery/jquery-3.5.1.slim.min.js"></script>
+    <script type="text/javascript" src="/jquery/jquery-3.5.1.slim.min.js"></script>
     <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/hide_header.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-    <style>
-        body{
-            padding-top:60px;
-        }
-        /* fix padding under menu after resize */
-        @media screen and (max-width: 767px) {
-            body { padding-top: 60px; }
-        }
-        @media screen and (min-width:768px) and (max-width: 991px) {
-            body { padding-top: 60px; }
-        }
-        @media screen and (min-width: 992px) {
-            body { padding-top: 60px; }
-        }
-    </style>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <link rel="stylesheet" href="/css/mystyle.css">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light nav-down">
             <a class="navbar-brand" href="/">Lutsiuk Taras</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

@@ -1,0 +1,30 @@
+header {
+    height: 60px;
+    position: fixed;
+    top: 0;
+    z-index:100;
+    transition: top 0.2s ease-in-out;
+    width: 100%;
+}
+.nav-up {
+    top: -60px;
+}
+body{
+    padding-top:60px;
+}
+/* fix padding under menu after resize */
+@media screen and (max-width: 767px) {
+    body { padding-top: 60px;}
+    .nav-up {
+        display: none;
+    }
+}
+@media screen and (min-width:768px) and (max-width: 991px) {
+    body { padding-top: 60px; }
+    .nav-up {
+        display: none;
+    }
+}
+@media screen and (min-width: 992px) {
+    body { padding-top: 60px; }
+}
