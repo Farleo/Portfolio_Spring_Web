@@ -43,6 +43,9 @@
                 <div class="nav-item">
                     <a class="btn btn-outline-dark ml-2" href="/login">Sign up</a>
                 </div>
+                <form class="nav-item" th:action="@{/logout}" method="post">
+                    <input class="btn btn-outline-dark ml-2" type="submit" value="Sign Out"/>
+                </form>
             </div>
         </nav>
 </div>
