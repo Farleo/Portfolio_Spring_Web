@@ -28,3 +28,17 @@ body{
 @media screen and (min-width: 992px) {
     body { padding-top: 60px; }
 }
+.image-preview {
+    width: auto;
+    min-height: auto;
+    border: 2px solid #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #cccccc;
+}
+.image-preview__image {
+    width: 100%;
+    max-height: 300px;
+}
