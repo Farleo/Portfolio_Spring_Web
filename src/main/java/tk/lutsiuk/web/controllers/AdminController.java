@@ -3,33 +3,39 @@ package tk.lutsiuk.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import tk.lutsiuk.web.models.Article;
-import tk.lutsiuk.web.repository.ArticleRepository;
+import tk.lutsiuk.web.service.ArticleService;
+import tk.lutsiuk.web.validator.ArticleValidator;
 
-import java.util.Map;
+import java.io.IOException;
 
 @Controller
 public class AdminController {
 @Autowired
-ArticleRepository articleRepository;
+ArticleService articleService;
+
+@Autowired
+ArticleValidator articleValidator;
 
 @GetMapping("/admin/blog/addnew")
-public String adminBlogAdd(Article article, Map<String, Object> m, Model model) {
+public String adminBlogAdd(Model model) {
 	model.addAttribute("title", "Додання нового запису");
 	model.addAttribute(new Article());
 	return "admin/blog-add";
 }
 
 @PostMapping("/admin/blog/addnew")
-public String addRegistrationUser(Article article, Map<String, Object> m) {
-	Article articleFromDb = articleRepository.findByTitle(article.getTitle());
-	if (articleFromDb != null) {
-		m.put("message", "Title exist!");
+public String addRegistrationUser(Article article, @RequestParam("inpFile") MultipartFile photo, Model model, BindingResult bindingResult) throws IOException {
+	articleValidator.validate(article,bindingResult);
+	if(bindingResult.hasErrors()){
 		return "admin/blog-add";
 	}
-	articleRepository.save(article);
+	articleService.createArticle(article, photo.getBytes(), photo.getOriginalFilename());
 	return "redirect:/";
 }
 	

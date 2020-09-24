@@ -14,7 +14,7 @@
                 <img alt="..." class="card-img border" height="350"  width="auto" th:src="${interest.coverPhoto}">
                 <div class="card-body">
                     <h3 th:text="${interest.title}"></h3>
-                    <p th:text="${interest.info}"></p>
+                    <p th:utext="${interest.info}"></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a th:href="'/blog/' + ${interest.id}">

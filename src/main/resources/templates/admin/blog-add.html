@@ -8,10 +8,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px">
-<form th:action="@{/admin/blog/addnew}" method="post" th:object="${article}">
-    <div th:if="${message}">
-    Title already exist
-    </div>
+<form th:action="@{/admin/blog/addnew}" method="post" th:object="${article}" enctype="multipart/form-data" class="needs-validation" novalidate>
     <input id="id" name="id" type="hidden"/>
 
     <label for="originPhoto">Add cover photo</label>
@@ -27,10 +24,13 @@
             <input type="file" name="inpFile" id="inpFile"/>
         </div>
     <label th:for="title" style="margin-top: 10px" >Title <small class="text-muted"> *</small></label>
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error</div>
     <input id="title" style="border-style: outset" type="text" class="form-control" name="title" placeholder="Enter title" required>
     <label th:for="info" style="margin-top: 10px">Short information <small class="text-muted"> *</small></label>
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('info')}" th:errors="*{info}">Error</div>
     <textarea id="info" style="border-style: outset" type="text" class="form-control" name="info" placeholder="Enter short information" required></textarea>
-    <label th:for="fullText" style="margin-top: 10px">Short information <small class="text-muted"> *</small></label>
+    <label th:for="fullText" style="margin-top: 10px">Full information <small class="text-muted"> *</small></label>
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('fullText')}" th:errors="*{fullText}">Error</div>
     <textarea rows="5" id="fullText" style="border-style: outset" type="text" class="form-control" name="fullText" placeholder="Enter full text" required></textarea>
     <div style="margin-top: 10px"><input type="submit" class="btn btn-outline-dark" value="Add new"/></div>
 </form>
