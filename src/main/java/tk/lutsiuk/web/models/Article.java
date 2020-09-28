@@ -16,10 +16,10 @@ private String coverPhoto;
 @Column(name = "title", nullable = false)
 private String title;
 
-@Column(name = "info", nullable = false)
+@Column(name = "info", nullable = false, columnDefinition="TINYTEXT")
 private String info;
 
-@Column(name = "full_text", nullable = false)
+@Column(name = "full_text", nullable = false, columnDefinition="TEXT")
 private String fullText;
 
 @Column(name = "views")

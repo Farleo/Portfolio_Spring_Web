@@ -10,31 +10,35 @@
         <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px">
             <form th:action="'/blog/edit/' + ${article.id} + '/save'" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                 <input id="id" name="id" th:field="*{id}" class="form-control" type="hidden"/>
+                <input id="likes" name="likes" th:field="*{likes}" class="form-control" type="hidden"/>
+                <input id="views" name="views" th:field="*{views}" class="form-control" type="hidden"/>
 
                 <label for="originPhoto">Add cover photo</label>
-                <div class="form-row">
                     <input id="originPhoto" type="text" hidden="hidden" th:field="*{coverPhoto}" />
                     <div class="image-preview" id="imagePreview">
-                        <img src="" th:src="*{coverPhoto}" alt="Image Preview"
-                             class="image-preview__image">
+                        <img src="" th:src="*{coverPhoto}" alt="Image Preview" class="image-preview__image">
                     </div>
-                </div>
-
-                <div class="form-row" style="margin-bottom: 20px">
+                <div style="margin-bottom: 3px">
                     <input type="file" name="inpFile" id="inpFile"/>
                 </div>
+
                 <label th:for="title" style="margin-top: 10px" >Title <small class="text-muted"> *</small></label>
                 <div class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error</div>
                 <input id="title" style="border-style: outset" type="text" class="form-control" th:field="*{title}" placeholder="Enter title" required>
+
                 <label th:for="info" style="margin-top: 10px">Short information <small class="text-muted"> *</small></label>
                 <div class="alert alert-danger" th:if="${#fields.hasErrors('info')}" th:errors="*{info}">Error</div>
                 <textarea id="info" style="border-style: outset" type="text" class="form-control" th:field="*{info}" placeholder="Enter short information" required></textarea>
+
                 <label th:for="fullText" style="margin-top: 10px">Full information <small class="text-muted"> *</small></label>
                 <div class="alert alert-danger" th:if="${#fields.hasErrors('fullText')}" th:errors="*{fullText}">Error</div>
                 <textarea rows="5" id="fullText" style="border-style: outset" type="text" class="form-control" th:field="*{fullText}" placeholder="Enter full text" required></textarea>
+
                 <div style="margin-top: 10px"><input type="submit" class="btn btn-outline-dark" value="Save"/></div>
             </form>
-        </div></div></div>
+        </div>
+    </div>
+</div>
 <div th:insert="blocks/footer :: footer"></div>
 <script src="/js/edit.js"></script>
 </body>
