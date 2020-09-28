@@ -2,6 +2,7 @@ package tk.lutsiuk.web.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.lutsiuk.web.models.Article;
 import tk.lutsiuk.web.repository.ArticleRepository;
 import tk.lutsiuk.web.service.ArticleService;
@@ -29,4 +30,24 @@ public void createArticle(Article article, byte[] photo, String originalPhotoNam
 	article.setCoverPhoto(newCoverPhotoPath.orElse(null));
 	articleRepository.save(article);
 }
+
+	@Override
+	public Iterable<Article> findAll() {
+		return articleRepository.findAll();
+	}
+
+	@Override
+	public Article findByid(Long id) {
+		Optional<Article> optionalArticle = articleRepository.findById(id);
+		return optionalArticle.orElse(null);
+	}
+	
+	
+	@Override
+	@Transactional
+	public void updateArticleById(Article article, byte[] photo, String originalPhotoName) throws IOException {
+		Optional<String> newCoverPhoto = imageStorageService.saveAndReturnImageLink(photo, originalPhotoName);
+		article.setCoverPhoto(newCoverPhoto.orElse(article.getCoverPhoto()));
+		articleRepository.save(article);
+	}
 }

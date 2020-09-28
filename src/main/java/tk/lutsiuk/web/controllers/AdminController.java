@@ -26,14 +26,14 @@ ArticleValidator articleValidator;
 public String adminBlogAdd(Model model) {
 	model.addAttribute("title", "Додання нового запису");
 	model.addAttribute(new Article());
-	return "admin/blog-add";
+	return "blog/blog-add";
 }
 
 @PostMapping("/admin/blog/addnew")
 public String addRegistrationUser(Article article, @RequestParam("inpFile") MultipartFile photo, Model model, BindingResult bindingResult) throws IOException {
 	articleValidator.validate(article,bindingResult);
 	if(bindingResult.hasErrors()){
-		return "admin/blog-add";
+		return "blog/blog-add";
 	}
 	articleService.createArticle(article, photo.getBytes(), photo.getOriginalFilename());
 	return "redirect:/";

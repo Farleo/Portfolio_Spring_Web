@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<main role="main" th:object="${article}">
+    <div class="container col-10 shadow-sm">
+        <img alt="..." class="card-img border" height="400"  width="auto" th:src="*{coverPhoto}">
+        <div class="card-body" >
+            <h3 th:text="*{title}"></h3>
+            <p th:utext="*{info}"></p>
+            <p th:utext="*{fullText}"></p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <form th:action="'/blog/edit/' + ${article.id}" method="post">
+                        <button class="btn btn-sm btn-outline-dark" type="submit">Edit</button>
+                    </form>
+                </div>
+                <small class="fa fa-eye" th:text="'  ' + *{views}"></small>
+                <small class="fa fa-thumbs-o-up" th:text="'  ' + *{likes}"></small>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>

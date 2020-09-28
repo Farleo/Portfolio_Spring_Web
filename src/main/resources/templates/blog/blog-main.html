@@ -21,7 +21,8 @@
                                 <button class="btn btn-sm btn-outline-dark" type="button">View
                                 </button>
                             </a>
-                            <button class="btn btn-sm btn-outline-dark" type="button">Edit</button>
+                            <form th:action="'/blog/edit/' + ${interest.id}" method="post">
+                            <button class="btn btn-sm btn-outline-dark" type="submit">Edit</button></form>
                         </div>
                         <small class="fa fa-eye" th:text="'  ' + ${interest.views}"></small>
                         <small class="fa fa-thumbs-o-up" th:text="'  ' + ${interest.likes}"></small>

@@ -33,7 +33,7 @@ private DataSource dataSource;
 protected void configure(HttpSecurity http) throws Exception {
 	http
 			.authorizeRequests()
-			.antMatchers("/blog").hasAuthority("USER")
+			.antMatchers("/blog/**").hasAuthority("USER")
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()
