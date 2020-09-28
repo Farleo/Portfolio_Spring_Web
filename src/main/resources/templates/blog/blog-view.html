@@ -7,7 +7,7 @@
 <body>
 <header th:insert="blocks/header :: header"></header>
 <main role="main" th:object="${article}">
-    <div class="container col-10 shadow-sm">
+    <div class="container col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12 shadow-sm">
         <img alt="..." class="card-img border" height="400"  width="auto" th:src="*{coverPhoto}">
         <div class="card-body" >
             <h3 th:text="*{title}"></h3>
