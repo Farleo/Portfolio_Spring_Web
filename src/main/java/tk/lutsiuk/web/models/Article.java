@@ -1,6 +1,8 @@
 package tk.lutsiuk.web.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "article")
@@ -25,8 +27,11 @@ private String fullText;
 @Column(name = "views")
 private int views;
 
-@Column(name = "likes")
-private int likes;
+@Column(name = "likes_count")
+private int likes_count;
+
+@OneToMany (fetch = FetchType.LAZY, mappedBy = "article")
+private Set<Likes> likes = new HashSet<>();
 
 public Long getId() {
 	return id;
@@ -60,12 +65,12 @@ public void setViews(int views) {
 	this.views = views;
 }
 
-public int getLikes() {
-	return likes;
+public int getLikes_count() {
+	return likes_count;
 }
 
-public void setLikes(int likes) {
-	this.likes = likes;
+public void setLikes_count(int likes) {
+	this.likes_count = likes;
 }
 
 public String getInfo() {
@@ -82,5 +87,13 @@ public String getCoverPhoto() {
 
 public void setCoverPhoto(String coverPhoto) {
 	this.coverPhoto = coverPhoto;
+}
+
+public Set<Likes> getLikes() {
+	return likes;
+}
+
+public void setLikes(Set<Likes> likes) {
+	this.likes = likes;
 }
 }

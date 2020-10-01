@@ -28,9 +28,17 @@ public class BlogController {
 	@RequestMapping("blog/{id}")
 	public String blogView(@PathVariable Long id, Model model){
 		Article article = articleService.findByid(id);
+		articleService.addView(article);
 		model.addAttribute("title", "Блог - " + article.getTitle());
 		model.addAttribute("article", article);
 		return "blog/blog-view";
+	}
+	
+	@PostMapping("/blog/like/{id}")
+	public String setLike(@PathVariable Long id){
+		Article article = articleService.findByid(id);
+		articleService.addLike(article);
+		return "redirect:/blog/{id}";
 	}
 	
 	@PostMapping("blog/edit/{id}")

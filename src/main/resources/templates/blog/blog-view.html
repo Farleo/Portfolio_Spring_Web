@@ -20,7 +20,10 @@
                     </form>
                 </div>
                 <small class="fa fa-eye" th:text="'  ' + *{views}"></small>
-                <small class="fa fa-thumbs-o-up" th:text="'  ' + *{likes}"></small>
+                <form th:action="'/blog/like/' + ${article.id}" method="post">
+                    <button class="btn btn-sm btn-outline-dark fa fa-thumbs-o-up" type="submit" th:text="'  ' + *{likes_count}"></button>
+                </form>
+<!--                <small class="fa fa-thumbs-o-up" th:text="'  ' + *{likes}"></small>-->
             </div>
         </div>
     </div>

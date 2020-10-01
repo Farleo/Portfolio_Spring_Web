@@ -13,4 +13,8 @@ public interface ArticleService {
 	Article findByid(Long id);
 
 	void updateArticleById(Article article, byte[] photo, String originalPhotoName) throws IOException;
+
+	void addView(Article article);
+
+	void addLike(Article article);
 }
