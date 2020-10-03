@@ -5,5 +5,6 @@ import tk.lutsiuk.web.models.Likes;
 
 public interface LikesRepository extends JpaRepository<Likes, Long> {
 
-Boolean existsByIpAdressAndArticle_Id(String ip, Long article_Id);
+	Boolean existsByIpAdressAndArticle_Id(String ip, Long article_Id);
+	
 }

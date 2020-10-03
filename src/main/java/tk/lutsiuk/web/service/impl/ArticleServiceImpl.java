@@ -64,7 +64,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public void addLike(Article article) {
+	public boolean addLike(Article article) {
 		String ip = HttpReqRespUtils.getClientIpAddressIfServletRequestExist();
 		boolean ipFromDb = likesRepository.existsByIpAdressAndArticle_Id(ip, article.getId());
 		if(!ipFromDb) {
@@ -73,8 +73,12 @@ public class ArticleServiceImpl implements ArticleService {
 			likes.setArticle(article);
 			likesRepository.save(likes);
 			article.setLikes_count(article.getLikes_count() + 1);
+			article.setViews(article.getViews() - 1);
+			articleRepository.save(article);
+			return false;
 		}
 		article.setViews(article.getViews() - 1);
 		articleRepository.save(article);
+		return true;
 	}
 }

@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tk.lutsiuk.web.models.Article;
-import tk.lutsiuk.web.repository.ArticleRepository;
 import tk.lutsiuk.web.service.ArticleService;
 
 import java.io.IOException;
@@ -35,9 +35,12 @@ public class BlogController {
 	}
 	
 	@PostMapping("/blog/like/{id}")
-	public String setLike(@PathVariable Long id){
+	public String setLike(@PathVariable Long id, RedirectAttributes redirectAttributes){
 		Article article = articleService.findByid(id);
-		articleService.addLike(article);
+		boolean checkLikeExist = articleService.addLike(article);
+		if(checkLikeExist){
+			redirectAttributes.addFlashAttribute("error_like", "You already like this post! Or someone liked this post from your IP address=)");
+		}
 		return "redirect:/blog/{id}";
 	}
 	

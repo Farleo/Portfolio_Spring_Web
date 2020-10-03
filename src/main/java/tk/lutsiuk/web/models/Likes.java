@@ -17,27 +17,28 @@ public class Likes {
 	@JoinColumn(name = "article_id")
 	private Article article;
 
-public Long getLikes_id() {
-	return likes_id;
-}
-
-public void setLikes_id(Long likes_id) {
-	this.likes_id = likes_id;
-}
-
-public String getIpAdress() {
-	return ipAdress;
-}
-
-public void setIpAdress(String ipAdress) {
-	this.ipAdress = ipAdress;
-}
-
-public Article getArticle() {
-	return article;
-}
-
-public void setArticle(Article article) {
-	this.article = article;
-}
+	public Long getLikes_id() {
+		return likes_id;
+	}
+	
+	public void setLikes_id(Long likes_id) {
+		this.likes_id = likes_id;
+	}
+	
+	public String getIpAdress() {
+		return ipAdress;
+	}
+	
+	public void setIpAdress(String ipAdress) {
+		this.ipAdress = ipAdress;
+	}
+	
+	public Article getArticle() {
+		return article;
+	}
+	
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+	
 }

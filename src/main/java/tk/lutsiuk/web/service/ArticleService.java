@@ -16,5 +16,5 @@ public interface ArticleService {
 
 	void addView(Article article);
 
-	void addLike(Article article);
+	boolean addLike(Article article);
 }
