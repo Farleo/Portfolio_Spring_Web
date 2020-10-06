@@ -28,11 +28,11 @@ public class AdminController {
 		model.addAttribute(new Article());
 		return "blog/blog-add";
 	}
-
+	
 	@PostMapping("/admin/blog/addnew")
 	public String addRegistrationUser(Article article, @RequestParam("inpFile") MultipartFile photo, Model model, BindingResult bindingResult) throws IOException {
-		articleValidator.validate(article,bindingResult);
-		if(bindingResult.hasErrors()){
+		articleValidator.validate(article, bindingResult);
+		if (bindingResult.hasErrors()) {
 			return "blog/blog-add";
 		}
 		articleService.createArticle(article, photo.getBytes(), photo.getOriginalFilename());

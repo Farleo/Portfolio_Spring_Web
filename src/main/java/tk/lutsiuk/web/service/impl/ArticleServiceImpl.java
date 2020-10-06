@@ -16,32 +16,30 @@ import java.util.Optional;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
-
+	
 	@Autowired
 	ArticleRepository articleRepository;
-	
+	@Autowired
+	LikesRepository likesRepository;
 	@Autowired
 	private ImageStorageService imageStorageService;
 	
-	@Autowired
-	LikesRepository likesRepository;
-	
 	@Override
 	public void createArticle(Article article, byte[] photo, String originalPhotoName) throws IOException {
-	Article articleFromDb = articleRepository.findByTitle(article.getTitle());
-	if (articleFromDb != null) {
-	
+		Article articleFromDb = articleRepository.findByTitle(article.getTitle());
+		if (articleFromDb != null) {
+		
+		}
+		Optional<String> newCoverPhotoPath = imageStorageService.saveAndReturnImageLink(photo, originalPhotoName);
+		article.setCoverPhoto(newCoverPhotoPath.orElse(null));
+		articleRepository.save(article);
 	}
-	Optional<String> newCoverPhotoPath = imageStorageService.saveAndReturnImageLink(photo, originalPhotoName);
-	article.setCoverPhoto(newCoverPhotoPath.orElse(null));
-	articleRepository.save(article);
-}
-
+	
 	@Override
 	public Iterable<Article> findAll() {
 		return articleRepository.findAll();
 	}
-
+	
 	@Override
 	public Article findByid(Long id) {
 		Optional<Article> optionalArticle = articleRepository.findById(id);
@@ -56,19 +54,19 @@ public class ArticleServiceImpl implements ArticleService {
 		article.setCoverPhoto(newCoverPhoto.orElse(article.getCoverPhoto()));
 		articleRepository.save(article);
 	}
-
+	
 	@Override
 	public void addView(Article article) {
-		article.setViews(article.getViews()+1);
+		article.setViews(article.getViews() + 1);
 		articleRepository.save(article);
 	}
-
+	
 	@Override
 	public boolean addLike(Article article) {
 		String ip = HttpReqRespUtils.getClientIpAddressIfServletRequestExist();
 		boolean ipFromDb = likesRepository.existsByIpAdressAndArticle_Id(ip, article.getId());
-		if(!ipFromDb) {
-			Likes likes =  new Likes();
+		if (!ipFromDb) {
+			Likes likes = new Likes();
 			likes.setIpAdress(ip);
 			likes.setArticle(article);
 			likesRepository.save(likes);

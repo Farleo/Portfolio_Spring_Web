@@ -24,9 +24,9 @@ public class BlogController {
 		model.addAttribute("articles", articles);
 		return "blog/blog-main";
 	}
-
+	
 	@RequestMapping("blog/{id}")
-	public String blogView(@PathVariable Long id, Model model){
+	public String blogView(@PathVariable Long id, Model model) {
 		Article article = articleService.findByid(id);
 		articleService.addView(article);
 		model.addAttribute("title", "Блог - " + article.getTitle());
@@ -35,23 +35,23 @@ public class BlogController {
 	}
 	
 	@PostMapping("/blog/like/{id}")
-	public String setLike(@PathVariable Long id, RedirectAttributes redirectAttributes){
+	public String setLike(@PathVariable Long id, RedirectAttributes redirectAttributes) {
 		Article article = articleService.findByid(id);
 		boolean checkLikeExist = articleService.addLike(article);
-		if(checkLikeExist){
+		if (checkLikeExist) {
 			redirectAttributes.addFlashAttribute("error_like", "You already like this post! Or someone liked this post from your IP address=)");
 		}
 		return "redirect:/blog/{id}";
 	}
 	
 	@PostMapping("blog/edit/{id}")
-	public String blogEdit(@PathVariable Long id, Model model){
+	public String blogEdit(@PathVariable Long id, Model model) {
 		Article article = articleService.findByid(id);
 		model.addAttribute("title", "Редагування - " + article.getTitle());
 		model.addAttribute("article", article);
 		return "blog/blog-edit";
 	}
-
+	
 	@PostMapping("blog/edit/{id}/save")
 	public String blogEditSave(@ModelAttribute Article article, @RequestParam("inpFile") MultipartFile photo, @PathVariable Long id, Model model) throws IOException {
 		articleService.updateArticleById(article, photo.getBytes(), photo.getOriginalFilename());

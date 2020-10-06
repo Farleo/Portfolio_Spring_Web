@@ -22,18 +22,18 @@ public class ArticleValidator implements Validator {
 		Article article = (Article) o;
 		Article byTitle = articleRepository.findByTitle(article.getTitle());
 		
-		if(byTitle!=null && article.getId() != byTitle.getId()){
+		if (byTitle != null && !article.getId().equals(byTitle.getId())) {
 			errors.rejectValue("title", "title.unique", "This title already exist");
 		}
-		if(article.getTitle().isEmpty()){
+		if (article.getTitle().isEmpty()) {
 			errors.rejectValue("title", "title.unique", "Title is empty");
 		}
-		if (article.getInfo().equals("<div><br></div>") || article.getInfo().isEmpty()){
+		if (article.getInfo().equals("<div><br></div>") || article.getInfo().isEmpty()) {
 			errors.rejectValue("info", "info.unique", "Info is empty");
 		}
-		if (article.getFullText().equals("<div><br></div>") || article.getFullText().isEmpty()){
+		if (article.getFullText().equals("<div><br></div>") || article.getFullText().isEmpty()) {
 			errors.rejectValue("fullText", "fulltext.unique", "Full Text is empty");
 		}
-	
+		
 	}
 }

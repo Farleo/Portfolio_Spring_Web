@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class AdditionalResourceWebConfiguration implements WebMvcConfigurer {
-
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/media/**").addResourceLocations("file:///" + System.getProperty("user.dir") + "/media/");
