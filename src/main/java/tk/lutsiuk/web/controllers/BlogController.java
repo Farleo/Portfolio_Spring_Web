@@ -19,7 +19,7 @@ public class BlogController {
 	
 	@GetMapping("/blog")
 	public String blog(Model model) {
-		model.addAttribute("title", "Блог");
+		model.addAttribute("title", "Blog");
 		Iterable<Article> articles = articleService.findAll();
 		model.addAttribute("articles", articles);
 		return "blog/blog-main";
@@ -29,7 +29,7 @@ public class BlogController {
 	public String blogView(@PathVariable Long id, Model model) {
 		Article article = articleService.findByid(id);
 		articleService.addView(article);
-		model.addAttribute("title", "Блог - " + article.getTitle());
+		model.addAttribute("title", "Blog - " + article.getTitle());
 		model.addAttribute("article", article);
 		return "blog/blog-view";
 	}
@@ -47,13 +47,13 @@ public class BlogController {
 	@PostMapping("blog/edit/{id}")
 	public String blogEdit(@PathVariable Long id, Model model) {
 		Article article = articleService.findByid(id);
-		model.addAttribute("title", "Редагування - " + article.getTitle());
+		model.addAttribute("title", "Edit - " + article.getTitle());
 		model.addAttribute("article", article);
 		return "blog/blog-edit";
 	}
 	
 	@PostMapping("blog/edit/{id}/save")
-	public String blogEditSave(@ModelAttribute Article article, @RequestParam("inpFile") MultipartFile photo, @PathVariable Long id, Model model) throws IOException {
+	public String blogEditSave(@ModelAttribute Article article, @RequestParam("inpFile") MultipartFile photo) throws IOException {
 		articleService.updateArticleById(article, photo.getBytes(), photo.getOriginalFilename());
 		return "redirect:/blog/{id}";
 	}

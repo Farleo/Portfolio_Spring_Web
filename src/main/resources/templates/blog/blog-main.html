@@ -11,9 +11,13 @@
         <div th:each="interest,interestStatus : ${articles}" class="col-md-4"
              th:if="${interestStatus.index lt rowStatus.index + 3 and interestStatus.index ge rowStatus.index}" >
             <div class="card mb-4 shadow-sm">
+                <a th:href="'/blog/' + ${interest.id}">
                 <img alt="..." class="card-img border" height="350"  width="auto" th:src="${interest.coverPhoto}">
+                </a>
                 <div class="card-body">
+                    <a class="text-dark" th:href="'/blog/' + ${interest.id}">
                     <h3 th:text="${interest.title}"></h3>
+                    </a>
                     <p th:utext="${interest.info}"></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
@@ -21,7 +25,7 @@
                                 <button class="btn btn-sm btn-outline-dark" type="button">View
                                 </button>
                             </a>
-                            <form th:action="'/blog/edit/' + ${interest.id}" method="post">
+                            <form th:action="'/blog/edit/' + ${interest.id}" method="post" sec:authorize="hasAuthority('ADMIN')">
                             <button class="btn btn-sm btn-outline-dark" type="submit">Edit</button></form>
                         </div>
                         <small class="fa fa-eye" th:text="'  ' + ${interest.views}"></small>

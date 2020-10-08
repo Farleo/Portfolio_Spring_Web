@@ -9,19 +9,14 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String main(Model model) {
-		model.addAttribute("title", "Головна сторінка");
+		model.addAttribute("title", "Lutsiuk Taras");
 		return "main";
 	}
 	
 	@GetMapping("/about")
 	public String about(Model model) {
-		model.addAttribute("title", "Про мене");
+		model.addAttribute("title", "About me");
 		return "about";
 	}
 	
-	@GetMapping("/database")
-	public String database(Model model) {
-		model.addAttribute("title", "База знань");
-		return "database";
-	}
 }

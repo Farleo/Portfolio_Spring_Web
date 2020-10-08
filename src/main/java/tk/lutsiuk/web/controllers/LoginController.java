@@ -17,7 +17,7 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String getLoginHands(@AuthenticationPrincipal User currentUser, Model model) {
-		model.addAttribute("title", "Сторінка входу");
+		model.addAttribute("title", "Login page");
 		if (currentUser != null) {
 			return "redirect:/";
 		}
@@ -26,7 +26,7 @@ public class LoginController {
 	
 	@GetMapping("/registration")
 	public String getRegistration(Model model) {
-		model.addAttribute("title", "Сторінка реєстрації");
+		model.addAttribute("title", "Registration page");
 		return "login/registration";
 	}
 	

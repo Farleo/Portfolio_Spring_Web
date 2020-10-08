@@ -23,14 +23,14 @@ public class AdminController {
 	ArticleValidator articleValidator;
 	
 	@GetMapping("/admin/blog/addnew")
-	public String adminBlogAdd(Model model) {
-		model.addAttribute("title", "Додання нового запису");
+	public String adminAddBlogView(Model model) {
+		model.addAttribute("title", "Add new article");
 		model.addAttribute(new Article());
 		return "blog/blog-add";
 	}
 	
 	@PostMapping("/admin/blog/addnew")
-	public String addRegistrationUser(Article article, @RequestParam("inpFile") MultipartFile photo, Model model, BindingResult bindingResult) throws IOException {
+	public String adminNewBlogSave(Article article, @RequestParam("inpFile") MultipartFile photo, Model model, BindingResult bindingResult) throws IOException {
 		articleValidator.validate(article, bindingResult);
 		if (bindingResult.hasErrors()) {
 			return "blog/blog-add";
