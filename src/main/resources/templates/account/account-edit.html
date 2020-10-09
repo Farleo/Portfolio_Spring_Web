@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-xs-10" style="margin-top: 15px">
+            <form th:action="@{'/user/edit/save'}" method="POST" th:object="${user}">
+                <div class="alert alert-danger"  th:if="${param.error}">
+                    Invalid username and password.
+                </div>
+                <div class="alert alert-info" th:if="${param.logout}">
+                    You have been logged out.
+                </div>
+                <input id="id" name="id" th:value="*{id}" type="hidden"/>
+                <input id="email" name="email" th:value="*{email}" type="hidden"/>
+                <input id="password" name="password" th:value="*{password}" type="hidden">
+                <input id="timeCreation" type="datetime-local" name="timeCreation" th:value="*{timeCreation}">
+                <label th:for="firstName" style="margin-top: 10px">First Name</label>
+                <input id="firstName" name="firstName" style="border-style: outset" type="text" class="form-control" th:field="*{firstName}" placeholder="Enter first name">
+                <label th:for="last_name" style="margin-top: 10px">Last Name</label>
+                <input id="lastName" style="border-style: outset" type="text" class="form-control" th:field="*{lastName}" placeholder="Enter last name">
+                <div style="margin-top: 10px"><input type="submit" class="btn btn-outline-dark" value="Edit"/></div>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>

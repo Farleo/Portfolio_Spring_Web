@@ -2,6 +2,7 @@ package tk.lutsiuk.web.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -37,6 +38,12 @@ public class User {
 	
 	@Column(name = "is_deleted")
 	private Boolean isDeleted = false;
+	
+	@Column(name = "time_creation")
+	private LocalDateTime timeCreation;
+	
+	@Column(name = "user_creation_ip")
+	private String userCreationIp;
 	
 	@ElementCollection (targetClass = Role.class, fetch = FetchType.LAZY)
 	@CollectionTable (name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -130,4 +137,21 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+	
+	public LocalDateTime getTimeCreation() {
+		return timeCreation;
+	}
+	
+	public void setTimeCreation(LocalDateTime timeCreation) {
+		this.timeCreation = timeCreation;
+	}
+	
+	public String getUserCreationIp() {
+		return userCreationIp;
+	}
+	
+	public void setUserCreationIp(String userCreationIp) {
+		this.userCreationIp = userCreationIp;
+	}
+	
 }

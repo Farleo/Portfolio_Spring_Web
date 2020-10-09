@@ -5,7 +5,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import tk.lutsiuk.web.models.User;
 import tk.lutsiuk.web.service.UserService;
 
@@ -32,11 +34,26 @@ public class LoginController {
 	
 	@PostMapping("/registration")
 	public String addRegistrationUser(User user, Model model) {
-		boolean userFromDb = userService.registrationNewUser(user);
-		if (userFromDb) {
+		boolean userSucceedRegister = userService.registrationNewUser(user);
+		if (!userSucceedRegister) {
 			model.addAttribute("message", "User exist!");
 			return "login/registration";
 		}
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/user/edit/")
+	public String editUserAccount(@AuthenticationPrincipal User user, Model model){
+		model.addAttribute("title", "Edit - " + user.getEmail());
+		User user1 = userService.findByid(user.getId());
+		model.addAttribute("user", user1);
+		return "account/account-edit";
+	}
+	
+	@PostMapping("/user/edit/save")
+	public String editUserAccountsave(@ModelAttribute User user, Model model){
+		model.addAttribute("user", user);
+		userService.editUser(user);
+		return "redirect:";
 	}
 }

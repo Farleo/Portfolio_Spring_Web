@@ -1,6 +1,7 @@
 package tk.lutsiuk.web.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,10 +19,10 @@ public class Article {
 	@Column(name = "title", nullable = false)
 	private String title;
 	
-	@Column(name = "info", nullable = false, columnDefinition="TINYTEXT")
+	@Column(name = "info", nullable = false, columnDefinition = "TINYTEXT")
 	private String info;
 	
-	@Column(name = "full_text", nullable = false, columnDefinition="TEXT")
+	@Column(name = "full_text", nullable = false, columnDefinition = "TEXT")
 	private String fullText;
 	
 	@Column(name = "views")
@@ -30,7 +31,10 @@ public class Article {
 	@Column(name = "likes_count")
 	private int likes_count;
 	
-	@OneToMany (fetch = FetchType.LAZY, mappedBy = "article")
+	@Column(name = "time_creation", nullable = false)
+	private LocalDateTime timeCreation;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
 	private Set<Likes> likes = new HashSet<>();
 	
 	public Long getId() {
@@ -95,5 +99,13 @@ public class Article {
 	
 	public void setLikes(Set<Likes> likes) {
 		this.likes = likes;
+	}
+	
+	public LocalDateTime getTimeCreation() {
+		return timeCreation;
+	}
+	
+	public void setTimeCreation(LocalDateTime timeCreation) {
+		this.timeCreation = timeCreation;
 	}
 }

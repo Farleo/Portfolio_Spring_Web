@@ -10,6 +10,7 @@
         <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px">
             <form th:action="@{/admin/blog/addnew}" method="post" th:object="${article}" enctype="multipart/form-data" class="needs-validation" novalidate>
                 <input id="id" name="id" type="hidden"/>
+                <input id="timeCreation" name="timeCreation" type="hidden"/>
 
                 <label for="originPhoto">Add cover photo</label>
                 <input id="originPhoto" type="text" hidden="hidden" th:value="*{getCoverPhoto()}" />

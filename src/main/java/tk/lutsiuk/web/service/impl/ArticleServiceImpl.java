@@ -12,6 +12,7 @@ import tk.lutsiuk.web.service.ImageStorageService;
 import tk.lutsiuk.web.utils.HttpReqRespUtils;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,8 @@ public class ArticleServiceImpl implements ArticleService {
 		if (articleFromDb != null) {
 		
 		}
+		LocalDateTime dateTime = LocalDateTime.now();
+		article.setTimeCreation(dateTime);
 		Optional<String> newCoverPhotoPath = imageStorageService.saveAndReturnImageLink(photo, originalPhotoName);
 		article.setCoverPhoto(newCoverPhotoPath.orElse(null));
 		articleRepository.save(article);

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import tk.lutsiuk.web.models.User;
 import tk.lutsiuk.web.repository.UserRepository;
 import tk.lutsiuk.web.service.UserService;
+import tk.lutsiuk.web.utils.HttpReqRespUtils;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 
 import static tk.lutsiuk.web.models.Role.USER;
@@ -32,9 +34,24 @@ public class UserServiceImpl implements UserService {
 		user.setActive(true);
 		user.setRoles(Collections.singleton(USER));
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		LocalDateTime dateTime = LocalDateTime.now();
+		user.setTimeCreation(dateTime);
+		String ip = HttpReqRespUtils.getClientIpAddressIfServletRequestExist();
+		user.setUserCreationIp(ip);
 		userRepository.save(user);
 		authenticateUserAndSetSession(user);
 		return true;
+	}
+	
+	@Override
+	public void editUser(User user) {
+		user.setActive(true);
+		userRepository.save(user);
+	}
+	
+	@Override
+	public User findByid(Long id) {
+		return userRepository.getOne(id);
 	}
 	
 	private void authenticateUserAndSetSession(User user) {

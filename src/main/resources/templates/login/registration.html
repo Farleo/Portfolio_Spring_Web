@@ -9,12 +9,13 @@
     <div class="row justify-content-center">
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-xs-10" style="margin-top: 15px">
 <form th:action="@{/registration}" method="post">
-    <div th:if="${message}">
+    <div class="alert alert-danger"  th:if="${message}">
     User already exist!
     </div>
-    <div th:if="${param.logout}">
+    <div class="alert alert-info" th:if="${param.logout}">
         You have been logged out.
     </div>
+    <input id="id" name="id" type="hidden"/>
     <label th:for="email" style="margin-top: 10px" >Email <small class="text-muted"> *</small></label>
     <input id="email" style="border-style: outset" type="email" class="form-control" name="email" placeholder="Enter email" required>
     <label th:for="password" style="margin-top: 10px">Password <small class="text-muted"> *</small></label>
