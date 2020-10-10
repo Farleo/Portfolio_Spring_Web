@@ -33,14 +33,8 @@ public class User {
 	@Column(name = "is_active", nullable = false)
 	private Boolean isActive;
 	
-	@Column(name = "created")
-	private LocalDate created;
-	
 	@Column(name = "is_deleted")
 	private Boolean isDeleted = false;
-	
-	@Column(name = "time_creation")
-	private LocalDateTime timeCreation;
 	
 	@Column(name = "user_creation_ip")
 	private String userCreationIp;
@@ -114,14 +108,6 @@ public class User {
 		isActive = active;
 	}
 	
-	public LocalDate getCreated() {
-		return created;
-	}
-	
-	public void setCreated(LocalDate created) {
-		this.created = created;
-	}
-	
 	public Boolean getDeleted() {
 		return isDeleted;
 	}
@@ -136,14 +122,6 @@ public class User {
 	
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
-	}
-	
-	public LocalDateTime getTimeCreation() {
-		return timeCreation;
-	}
-	
-	public void setTimeCreation(LocalDateTime timeCreation) {
-		this.timeCreation = timeCreation;
 	}
 	
 	public String getUserCreationIp() {

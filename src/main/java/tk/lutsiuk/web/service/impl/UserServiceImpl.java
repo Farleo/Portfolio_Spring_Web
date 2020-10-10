@@ -12,7 +12,6 @@ import tk.lutsiuk.web.repository.UserRepository;
 import tk.lutsiuk.web.service.UserService;
 import tk.lutsiuk.web.utils.HttpReqRespUtils;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 
 import static tk.lutsiuk.web.models.Role.USER;
@@ -34,8 +33,8 @@ public class UserServiceImpl implements UserService {
 		user.setActive(true);
 		user.setRoles(Collections.singleton(USER));
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		LocalDateTime dateTime = LocalDateTime.now();
-		user.setTimeCreation(dateTime);
+//		LocalDateTime dateTime = LocalDateTime.now();
+//		user.setTimeCreation(dateTime);
 		String ip = HttpReqRespUtils.getClientIpAddressIfServletRequestExist();
 		user.setUserCreationIp(ip);
 		userRepository.save(user);
@@ -56,7 +55,7 @@ public class UserServiceImpl implements UserService {
 	
 	private void authenticateUserAndSetSession(User user) {
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user, null,
-				AuthorityUtils.createAuthorityList("USER"));
+				AuthorityUtils.createAuthorityList("ROLE_USER"));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 }
