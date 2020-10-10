@@ -1,7 +1,6 @@
 package tk.lutsiuk.web.models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -39,8 +38,11 @@ public class User {
 	@Column(name = "user_creation_ip")
 	private String userCreationIp;
 	
-	@ElementCollection (targetClass = Role.class, fetch = FetchType.LAZY)
-	@CollectionTable (name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+	@Column(name = "time_creation")
+	private LocalDateTime timeCreation;
+	
+	@ElementCollection(targetClass = Role.class, fetch = FetchType.LAZY)
+	@CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
 	@Enumerated(EnumType.STRING)
 	private Set<Role> roles;
 	
@@ -132,4 +134,29 @@ public class User {
 		this.userCreationIp = userCreationIp;
 	}
 	
+	public LocalDateTime getTimeCreation() {
+		return timeCreation;
+	}
+	
+	public void setTimeCreation(LocalDateTime timeCreation) {
+		this.timeCreation = timeCreation;
+	}
+	
+	@Override
+	public String toString() {
+		return "User{" +
+				       "id=" + id +
+				       ", firstName='" + firstName + '\'' +
+				       ", lastName='" + lastName + '\'' +
+				       ", password='" + password + '\'' +
+				       ", email='" + email + '\'' +
+				       ", photo='" + photo + '\'' +
+				       ", info='" + info + '\'' +
+				       ", isActive=" + isActive +
+				       ", isDeleted=" + isDeleted +
+				       ", userCreationIp='" + userCreationIp + '\'' +
+				       ", timeCreation=" + timeCreation +
+				       ", roles=" + roles +
+				       '}';
+	}
 }

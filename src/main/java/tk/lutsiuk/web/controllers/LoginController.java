@@ -43,15 +43,15 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/user/edit/")
-	public String editUserAccount(@AuthenticationPrincipal User user, Model model){
+	public String editUserAccount(Model model) {
+		User user = userService.getLoggedUser();
+		model.addAttribute("user", user);
 		model.addAttribute("title", "Edit - " + user.getEmail());
-		User user1 = userService.findByid(user.getId());
-		model.addAttribute("user", user1);
 		return "account/account-edit";
 	}
 	
 	@PostMapping("/user/edit/save")
-	public String editUserAccountsave(@ModelAttribute User user, Model model){
+	public String editUserAccountSave(@ModelAttribute User user, Model model) {
 		model.addAttribute("user", user);
 		userService.editUser(user);
 		return "redirect:";

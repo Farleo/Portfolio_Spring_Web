@@ -3,6 +3,7 @@ package tk.lutsiuk.web.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.Formatter;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -14,6 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Configuration
 @EnableWebSecurity
@@ -61,5 +66,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public Formatter<LocalDate> localDateFormatter() {
+		return new Formatter<>() {
+			@Override
+			public LocalDate parse(String text, Locale locale) {
+				return LocalDate.parse(text, DateTimeFormatter.ISO_DATE);
+			}
+			
+			@Override
+			public String print(LocalDate object, Locale locale) {
+				return DateTimeFormatter.ISO_DATE.format(object);
+			}
+		};
+	}
+	
+	
+	@Bean
+	public Formatter<LocalDateTime> localDateTimeFormatter() {
+		return new Formatter<>() {
+			@Override
+			public LocalDateTime parse(String text, Locale locale) {
+				return LocalDateTime.parse(text, DateTimeFormatter.ISO_DATE_TIME);
+			}
+			
+			@Override
+			public String print(LocalDateTime object, Locale locale) {
+				return DateTimeFormatter.ISO_DATE_TIME.format(object);
+			}
+		};
 	}
 }

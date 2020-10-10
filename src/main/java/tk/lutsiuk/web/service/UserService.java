@@ -9,4 +9,8 @@ public interface UserService {
 	void editUser(User user);
 	
 	User findByid(Long id);
+	
+	User findByEmail (String email);
+	
+	User getLoggedUser();
 }

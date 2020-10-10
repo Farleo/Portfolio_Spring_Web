@@ -15,10 +15,11 @@
                 <div class="alert alert-info" th:if="${param.logout}">
                     You have been logged out.
                 </div>
-                <input type="text" hidden="hidden" name="id" th:value="${user.getId()}"/>
+                <input id="id" name="id" th:value="*{id}" hidden="hidden"/>
                 <input id="email" name="email" th:value="*{email}" type="hidden"/>
                 <input id="password" name="password" th:value="*{password}" type="hidden">
                 <input id="userCreationIp" name="userCreationIp" th:value="*{userCreationIp}" type="hidden">
+                <input id="timeCreation" name="timeCreation" th:value="*{getTimeCreation()}" type="hidden">
                 <label th:for="firstName" style="margin-top: 10px">First Name</label>
                 <input id="firstName" name="firstName" style="border-style: outset" type="text" class="form-control" th:field="*{firstName}" placeholder="Enter first name">
                 <label th:for="last_name" style="margin-top: 10px">Last Name</label>
