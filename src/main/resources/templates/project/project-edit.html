@@ -5,10 +5,10 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
-<div class="container" th:object="${article}">
+<div class="container" th:object="${project}">
     <div class="row justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px">
-            <form th:action="'/blog/edit/' + ${article.id} + '/save'" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <form th:action="'/project/edit/' + ${project.id} + '/save'" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                 <input id="id" name="id" th:field="*{id}" class="form-control" type="hidden"/>
                 <input id="likes" name="likes" th:field="*{likes_count}" class="form-control" type="hidden"/>
                 <input id="views" name="views" th:field="*{views}" class="form-control" type="hidden"/>

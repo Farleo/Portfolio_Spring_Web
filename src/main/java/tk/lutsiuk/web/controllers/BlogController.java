@@ -19,8 +19,8 @@ public class BlogController {
 	
 	@GetMapping("/blog")
 	public String blog(Model model) {
-		model.addAttribute("title", "Blog");
-		Iterable<Article> articles = articleService.findAll();
+		model.addAttribute("title", "Lutsiuk Taras - Blog");
+		Iterable<Article> articles = articleService.findAllReverse();
 		model.addAttribute("articles", articles);
 		return "blog/blog-main";
 	}
@@ -29,7 +29,7 @@ public class BlogController {
 	public String blogView(@PathVariable Long id, Model model) {
 		Article article = articleService.findByid(id);
 		articleService.addView(article);
-		model.addAttribute("title", "Blog - " + article.getTitle());
+		model.addAttribute("title", "Lutsiuk Taras - Blog - " + article.getTitle());
 		model.addAttribute("article", article);
 		return "blog/blog-view";
 	}

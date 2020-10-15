@@ -18,15 +18,33 @@ body{
     .nav-up {
         display: none;
     }
+    #page-main #img-me-main {
+        height: 170px;
+        width: 190px;
+        float: left;
+        padding-right: 20px;
+    }
 }
 @media screen and (min-width:768px) and (max-width: 991px) {
     body { padding-top: 60px; }
     .nav-up {
         display: none;
     }
+    #page-main #img-me-main {
+        height: 205px;
+        width: 225px;
+        float: left;
+        padding-right: 20px;
+    }
 }
 @media screen and (min-width: 992px) {
     body { padding-top: 60px; }
+    #page-main #img-me-main {
+        height: 240px;
+        width: 260px;
+        float: left;
+        padding-right: 20px;
+    }
 }
 .image-preview {
     width: auto;
@@ -54,14 +72,30 @@ body{
     border-radius: 5px;
 }
 
-#page-main #img-about-me {
-    height: 260px;
-    width: 260px;
-    float: left;
-    padding-right: 20px;
-}
 #page-main #after-photo {
     clear:left;
     padding-bottom: 5px;
     padding-top: 5px;
+}
+
+#page-about #img-me-on-cv {
+    height: 125px;
+    width: 99px;
+    float: right;
+    margin-right: 55px;
+    margin-bottom: 20px;
+}
+#page-about table {
+    clear: right;
+}
+#page-about #skill td {
+     border: solid 1px grey;
+}
+
+#page-about #top {
+    width: 100%;
+}
+
+#page-about #img {
+    float: right;
 }

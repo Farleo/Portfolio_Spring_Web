@@ -13,6 +13,8 @@ import tk.lutsiuk.web.utils.HttpReqRespUtils;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,8 +41,10 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 	
 	@Override
-	public Iterable<Article> findAll() {
-		return articleRepository.findAll();
+	public List<Article> findAllReverse() {
+		List<Article> reverseList = articleRepository.findAll();
+		Collections.reverse(reverseList);
+		return reverseList;
 	}
 	
 	@Override
