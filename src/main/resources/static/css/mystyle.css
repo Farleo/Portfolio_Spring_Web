@@ -99,3 +99,7 @@ body{
 #page-about #img {
     float: right;
 }
+
+.text-muted:hover{
+    color: #0b0b0b !important;
+}
