@@ -14,10 +14,10 @@
                 <input id="timeCreation" name="timeCreation" th:field="*{timeCreation}" class="form-control" type="hidden"/>
 
                 <label for="originPhoto">Add cover photo</label>
-                    <input id="originPhoto" type="text" hidden="hidden" th:field="*{coverPhoto}" />
-                    <div class="image-preview" id="imagePreview">
-                        <img src="" th:src="*{coverPhoto}" alt="Image Preview" class="image-preview__image">
-                    </div>
+                <input id="originPhoto" type="text" hidden="hidden" th:field="*{coverPhoto}" />
+                <div class="image-preview" id="imagePreview">
+                    <img src="" th:src="*{coverPhoto}" alt="Image Preview" class="image-preview__image card-img img-fluid" id="img-project">
+                </div>
                 <div style="margin-bottom: 3px">
                     <input type="file" name="inpFile" id="inpFile"/>
                 </div>
