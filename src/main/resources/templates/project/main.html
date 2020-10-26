@@ -10,11 +10,11 @@
     <div class="post-content" id="page-main">
         <div th:each="project : ${projects}">
             <div class="card mb-4 shadow-sm">
-                <a class="text-dark" th:href="'/project/' + ${project.id}">
+                <a class="text-muted" style="text-decoration: none;" th:href="'/project/' + ${project.id}">
                     <h3 th:text="${project.title}" style="text-align: center"></h3>
                 </a>
                 <a th:href="'/project/' + ${project.id}">
-                    <img alt="..." class="card-img img-fluid" id="img-project" th:src="${project.coverPhoto}">
+                    <img alt="..." class="card-img img-fluid " id="img-project" th:src="${project.coverPhoto}">
                 </a>
                 <div class="card-body">
                     <p th:utext="${project.info}"></p>

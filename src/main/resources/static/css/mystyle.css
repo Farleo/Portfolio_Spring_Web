@@ -47,10 +47,8 @@ body{
     }
 }
 .image-preview {
-    width: auto;
-    min-height: auto;
+    height: 20rem; width: auto; display: block; margin-left: auto; margin-right: auto;
     border: 2px solid #dddddd;
-    display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
@@ -89,7 +87,7 @@ body{
     clear: right;
 }
 #page-about #skill td {
-     border: solid 1px grey;
+    border: solid 1px grey;
 }
 
 #page-about #top {

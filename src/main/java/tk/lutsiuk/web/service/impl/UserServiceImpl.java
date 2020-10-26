@@ -67,8 +67,11 @@ public class UserServiceImpl implements UserService {
 		String userName = "";
 		if (principal instanceof UserDetails) {
 			userName = ((UserDetails) principal).getUsername();
-		} else {
+		} else if (principal instanceof User){
 			userName = ((User) principal).getEmail();
+		}
+		else{
+			return null;
 		}
 		return userRepository.findByEmail(userName);
 	}
