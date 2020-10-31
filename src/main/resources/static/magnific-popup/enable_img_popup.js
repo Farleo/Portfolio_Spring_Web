@@ -1,5 +1,3 @@
-$(document).ready(function() {
-    $('.image-popup').magnificPopup({
+$('.image-popup').magnificPopup({
         type: 'image'
     });
-});

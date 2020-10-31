@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
 // Hide Header on on scroll down
     var didScroll;
     var lastScrollTop = 0;
@@ -50,5 +50,4 @@ $(document).ready(function() {
                 $(this).addClass('active');
             }
         });
-    })
-});
+    });
