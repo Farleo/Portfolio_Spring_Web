@@ -104,3 +104,6 @@ body{
 #img-project {
     height: 20rem; width: auto; display: block; margin-left: auto; margin-right: auto;
 }
+#page-about p {
+    text-indent: 3ch;
+}
