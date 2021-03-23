@@ -13,7 +13,8 @@
             <img alt="..." class="card-img img-fluid" id="img-project" th:src="*{coverPhoto}">
             <p th:utext="*{info}"></p>
             <p th:utext="*{fullText}"></p>
-            <div class="alert alert-danger" th:if="${error_like}" th:text="${error_like}">
+            <div class="alert alert-danger" id="error_message" style="visibility: hidden">
+                <p>You already like this post! Or someone liked this post from your IP address=)</p>
             </div>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group" >
@@ -27,13 +28,12 @@
                 </div>
                 <small class="fa fa-clock-o" th:text="${#temporals.format(article.timeCreation, ' dd-MM-yyyy HH:mm')}"></small>
                 <small class="fa fa-eye" th:text="'  ' + *{views}"></small>
-                <form th:action="'/blog/like/' + ${article.id}" method="post">
-                    <button class="btn btn-sm btn-outline-dark fa fa-thumbs-o-up" type="submit" th:text="'  ' + *{likes_count}"></button>
-                </form>
+                <button th:onclick="'javascript:like('+ ${article.id} + ');'" class="btn btn-sm btn-outline-dark" type="submit" ><div class="fa fa-thumbs-o-up" id="like-count-text" th:text="${article.likes_count}"></div></button>
             </div>
         </div>
     </div>
 </main>
+
 <div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>
