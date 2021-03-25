@@ -3,6 +3,8 @@ package tk.lutsiuk.web.models;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+import static tk.lutsiuk.web.constant.Constants.NO_IMAGE;
+
 @Entity
 @Table(name = "project")
 public class Project {
@@ -38,6 +40,9 @@ public class Project {
 	}
 	
 	public String getCoverPhoto() {
+		if(coverPhoto==null){
+			coverPhoto=NO_IMAGE;
+		}
 		return coverPhoto;
 	}
 	

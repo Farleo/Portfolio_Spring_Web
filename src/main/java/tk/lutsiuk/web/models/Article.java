@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import static tk.lutsiuk.web.constant.Constants.NO_IMAGE;
+
 @Entity
 @Table(name = "article")
 public class Article {
@@ -86,6 +88,9 @@ public class Article {
 	}
 	
 	public String getCoverPhoto() {
+		if(coverPhoto==null){
+			coverPhoto=NO_IMAGE;
+		}
 		return coverPhoto;
 	}
 	
