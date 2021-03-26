@@ -1,6 +1,7 @@
 package tk.lutsiuk.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +40,12 @@ public class ProjectController {
 		model.addAttribute("title", "Edit - " + project.getTitle());
 		model.addAttribute("project", project);
 		return "project/project-edit";
+	}
+	
+	@PostMapping("admin/project/delete/{id}")
+	public String projectDelete(@PathVariable Long id) {
+		projectService.delete(id);
+		return "redirect:/admin/project-list";
 	}
 	
 	@PostMapping("project/edit/{id}/save")

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<main role="main" th:object="${users}">
+    <div style="text-align: center;">
+        <div class="order-md-1 mx-auto mt-3">
+            <table class="table table-striped">
+                <td><b>Id</b></td>
+                <td><b>Email</b></td>
+                <td><b>First Name</b></td>
+                <td><b>Last Name</b></td>
+                <td><b>Photo</b></td>
+                <td><b>Info</b></td>
+                <td><b>Time</b></td>
+                <td><b>Ip</b></td>
+                <td><b>Edit</b></td>
+                <td><b>Delete</b></td>
+                <tr th:each="user : ${users}">
+                    <td>
+                        <a th:text="${user.getId()}"/>
+                    </td>
+                    <td>
+                        <a th:text="${user.getEmail()}"/>
+                    </td>
+                    <td>
+                        <a th:utext="${user.getFirstName()}"/>
+                    </td>
+                    <td>
+                        <a th:utext="${user.getLastName()}"/>
+                    </td>
+                    <td>
+                        <img alt="..." style="max-width:40px;max-height:40px" th:src="${user.getPhoto()}">
+                    </td>
+                    <td>
+                        <a th:utext="${user.getInfo()}"/>
+                    </td>
+                    <td>
+                        <a th:text="${#temporals.format(user.getTimeCreation(), 'dd.MM.yy hh:mm:ss')}"/>
+                    </td>
+                    <td>
+                        <a th:text="${user.getUserCreationIp()}"/>
+                    </td>
+                    <td>
+                        <form th:action="'/admin/user/edit/' + ${user.getId()}" method="post" sec:authorize="hasAuthority('ADMIN')">
+                            <button class="btn btn-sm btn-outline-dark" type="submit">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="'/admin/user/delete/' + ${user.getId()}" method="post" sec:authorize="hasAuthority('ADMIN')">
+                            <button class="btn btn-sm btn-outline-dark" type="submit">Delete</button>
+                        </form>
+                    </td>
+            </table>
+        </div>
+    </div>
+
+</main>
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>

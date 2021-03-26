@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<main role="main" th:object="${projects}">
+    <div style="text-align: center;">
+        <div class="order-md-1 mx-auto mt-3">
+            <table class="table table-striped">
+                <td><b>Id</b></td>
+                <td><b>Name</b></td>
+                <td><b>Photo</b></td>
+                <td><b>Info</b></td>
+                <td><b>Time</b></td>
+                <td><b>Views</b></td>
+                <td><b>Edit</b></td>
+                <td><b>Delete</b></td>
+                <tr th:each="project : ${projects}">
+                    <td>
+                        <a th:text="${project.getId()}"/>
+                    </td>
+                    <td>
+                        <a th:text="${project.title}"/>
+                    </td>
+                    <td>
+                        <img alt="..." style="max-width:40px;max-height:40px" th:src="${project.getCoverPhoto()}">
+                    </td>
+                    <td>
+                        <a th:utext="${project.getInfo()}"/>
+                    </td>
+                    <td>
+                        <a th:text="${#temporals.format(project.getTimeCreation(), 'dd.MM.yy hh:mm:ss')}"/>
+                    </td>
+                    <td>
+                        <a th:text="${project.getViews()}"/>
+                    </td>
+                    <td>
+                        <form th:action="'/project/edit/' + ${project.getId()}" method="post" sec:authorize="hasAuthority('ADMIN')">
+                            <button class="btn btn-sm btn-outline-dark" type="submit">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="'/admin/project/delete/' + ${project.getId()}" method="post" sec:authorize="hasAuthority('ADMIN')">
+                            <button class="btn btn-sm btn-outline-dark" type="submit">Delete</button>
+                        </form>
+                    </td>
+            </table>
+        </div>
+    </div>
+
+</main>
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>

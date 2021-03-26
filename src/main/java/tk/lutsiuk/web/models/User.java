@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import static tk.lutsiuk.web.constant.Constants.NO_IMAGE;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -87,6 +89,9 @@ public class User {
 	}
 	
 	public String getPhoto() {
+		if(photo==null || photo.isEmpty()){
+			photo=NO_IMAGE;
+		}
 		return photo;
 	}
 	

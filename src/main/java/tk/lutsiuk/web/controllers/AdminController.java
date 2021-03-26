@@ -6,12 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import tk.lutsiuk.web.models.Article;
 import tk.lutsiuk.web.models.Project;
 import tk.lutsiuk.web.service.ArticleService;
 import tk.lutsiuk.web.service.ProjectService;
+import tk.lutsiuk.web.service.UserService;
 import tk.lutsiuk.web.validator.ArticleValidator;
 import tk.lutsiuk.web.validator.ProjectValidator;
 
@@ -30,6 +32,9 @@ public class AdminController {
 	
 	@Autowired
 	ProjectValidator projectValidator;
+	
+	@Autowired
+	UserService userService;
 	
 	@GetMapping("/admin/blog/addnew")
 	public String adminAddBlogView(Model model) {
@@ -65,4 +70,24 @@ public class AdminController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping("/admin/project-list")
+	public String adminShowProjectList(Model model) {
+		model.addAttribute("title", "Project list");
+		model.addAttribute("projects", projectService.getListProject());
+		return "admin/project-list";
+	}
+	
+	@RequestMapping("/admin/blog-list")
+	public String adminShowBlogList(Model model) {
+		model.addAttribute("title", "Project list");
+		model.addAttribute("blogs", articleService.getListArticle());
+		return "admin/blog-list";
+	}
+	
+	@RequestMapping("/admin/user-list")
+	public String adminShowUserList(Model model) {
+		model.addAttribute("title", "User list");
+		model.addAttribute("users", userService.getUserList());
+		return "admin/user-list";
+	}
 }

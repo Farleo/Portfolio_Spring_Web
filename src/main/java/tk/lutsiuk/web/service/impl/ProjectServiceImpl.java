@@ -59,4 +59,18 @@ public class ProjectServiceImpl implements ProjectService {
 		project.setCoverPhoto(newCoverPhoto.orElse(project.getCoverPhoto()));
 		projectRepository.save(project);
 	}
+	
+	@Override
+	public List<Project> getListProject() {
+		return projectRepository.findAll();
+	}
+	
+	@Override
+	public void delete(Long id) {
+		Optional<Project> optionalProject = projectRepository.findById(id);
+		if (optionalProject.isPresent()) {
+			Project project = optionalProject.get();
+			projectRepository.delete(project);
+		}
+	}
 }

@@ -18,4 +18,8 @@ public interface ArticleService {
 	void addView(Article article);
 	
 	boolean addLike(Article article);
+	
+	void deleteArticle(Long id);
+	
+	List<Article> getListArticle();
 }

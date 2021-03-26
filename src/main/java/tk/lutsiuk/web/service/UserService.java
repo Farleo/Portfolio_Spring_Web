@@ -2,6 +2,8 @@ package tk.lutsiuk.web.service;
 
 import tk.lutsiuk.web.models.User;
 
+import java.util.List;
+
 public interface UserService {
 	
 	boolean registrationNewUser(User user);
@@ -10,7 +12,9 @@ public interface UserService {
 	
 	User findByid(Long id);
 	
-	User findByEmail (String email);
+	User findByEmail(String email);
 	
 	User getLoggedUser();
+	
+	List<User> getUserList();
 }

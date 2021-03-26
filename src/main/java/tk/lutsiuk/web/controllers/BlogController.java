@@ -51,6 +51,11 @@ public class BlogController {
 		model.addAttribute("article", article);
 		return "blog/blog-edit";
 	}
+	@PostMapping("admin/blog/delete/{id}")
+	public String blogDelete(@PathVariable Long id) {
+		articleService.deleteArticle(id);
+		return "redirect:/admin/blog-list";
+	}
 	
 	@PostMapping("blog/edit/{id}/save")
 	public String blogEditSave(@ModelAttribute Article article, @RequestParam("inpFile") MultipartFile photo) throws IOException {

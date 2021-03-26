@@ -17,4 +17,8 @@ public interface ProjectService {
 	void addView(Project project);
 	
 	void updateProjectById(Project project, byte[] bytes, String originalFilename) throws IOException;
+	
+	List<Project> getListProject();
+	
+	void delete(Long id);
 }

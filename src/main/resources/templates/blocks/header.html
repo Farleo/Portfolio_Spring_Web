@@ -33,13 +33,16 @@
                         <a class="nav-link" href="/about">About</a>
                     </li>
                 </ul>
-
                 <div class="nav-item active dropdown" sec:authorize="hasAuthority('ADMIN')">
                     <a class="dropdown-toggle btn btn-outline-dark mr-1" href="#" id="navbarDropdown" data-toggle="dropdown" >Admin</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/admin/blog/addnew">Add new blog</a>
+                        <a class="dropdown-item" href="/admin/blog/addnew">New blog</a>
+                        <a class="dropdown-item" href="/admin/blog-list">Blog list</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/admin/project/addnew">Add new project</a>
+                        <a class="dropdown-item" href="/admin/project/addnew">New project</a>
+                        <a class="dropdown-item" href="/admin/project-list">Project list</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/admin/user-list">User list</a>
                     </div>
                 </div>
                 <div class="nav-item active dropdown" sec:authorize="isAuthenticated()">

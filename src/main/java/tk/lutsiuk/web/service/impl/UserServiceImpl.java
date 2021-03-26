@@ -15,6 +15,7 @@ import tk.lutsiuk.web.utils.HttpReqRespUtils;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.List;
 
 import static tk.lutsiuk.web.models.Role.USER;
 
@@ -74,6 +75,11 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		return userRepository.findByEmail(userName);
+	}
+	
+	@Override
+	public List<User> getUserList() {
+		return userRepository.findAll();
 	}
 	
 	private void authenticateUserAndSetSession(User user) {

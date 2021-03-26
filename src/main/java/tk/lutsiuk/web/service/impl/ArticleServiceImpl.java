@@ -84,4 +84,18 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		return true;
 	}
+	
+	@Override
+	public void deleteArticle(Long id) {
+		Optional<Article> optionalArticle = articleRepository.findById(id);
+		if (optionalArticle.isPresent()) {
+			Article article = optionalArticle.get();
+			articleRepository.delete(article);
+		}
+	}
+	
+	@Override
+	public List<Article> getListArticle() {
+		return articleRepository.findAll();
+	}
 }
