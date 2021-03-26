@@ -88,7 +88,7 @@ public class Article {
 	}
 	
 	public String getCoverPhoto() {
-		if(coverPhoto==null){
+		if(coverPhoto==null || coverPhoto.isEmpty()){
 			coverPhoto=NO_IMAGE;
 		}
 		return coverPhoto;
