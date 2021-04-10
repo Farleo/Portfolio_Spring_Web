@@ -32,10 +32,12 @@ function show(id) {
         data: data,
         dataType: 'json',
 
-        success: function (result) {
+        success: async function (result) {
             $('#getResultDiv div').html(result);
             console.log("Change like: ", result);
             document.getElementById('like-count-text').innerHTML = result;
+            await new Promise(resolve => setTimeout(resolve, 4000));
+            document.getElementById('error_message').style.visibility = "hidden";
         },
         error: function (e) {
             $("#getResultDiv").html("<strong>Error</strong>");
