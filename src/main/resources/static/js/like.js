@@ -13,7 +13,7 @@ function like(id) {
             show(id);
             console.log("Liked: ", result);
             if(result===true){
-                document.getElementById('error_message').style.visibility = "visible";
+                document.getElementById('error_message').style.display = "block";
             }
 
         },
@@ -32,12 +32,11 @@ function show(id) {
         data: data,
         dataType: 'json',
 
-        success: async function (result) {
+        success: function (result) {
             $('#getResultDiv div').html(result);
             console.log("Change like: ", result);
             document.getElementById('like-count-text').innerHTML = result;
-            await new Promise(resolve => setTimeout(resolve, 4000));
-            document.getElementById('error_message').style.visibility = "hidden";
+            $( "#error_message" ).fadeOut( 6000, "linear", result );
         },
         error: function (e) {
             $("#getResultDiv").html("<strong>Error</strong>");
