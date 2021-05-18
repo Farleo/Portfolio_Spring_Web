@@ -101,6 +101,12 @@ body{
 .text-muted:hover{
     color: #0b0b0b !important;
 }
+.contact-me:hover{
+    color: #0b0b0b !important;
+}
+.contact-me{
+    color: #343a40;
+}
 #img-project {
     height: 20rem; width: auto; display: block; margin-left: auto; margin-right: auto;
 }

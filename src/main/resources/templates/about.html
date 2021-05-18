@@ -3,58 +3,119 @@
 <head>
     <title th:text="${title}"/>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link rel="stylesheet" href="/css/print.css" media="print">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+            integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
+<div class="post-content" id="page-about">
 <div class="container col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12 shadow-sm">
-    <div class="post-content" id="page-about">
-        <hr/>
-        <hr/>
-        <p></p>
-        <p style="text-align: center">
-            This page contains the actual web version of my resume, or you can download a <a href="/files/LutsiukTaras2021.pdf" target="_blank" rel="noreferrer">PDF file</a>.
-        </p>
-        <hr/>
-        <hr/>
-        <p></p>
+        <div class="no-print">
+            <div style="text-align: center">
+                <button class="btn btn-sm btn-outline-dark cent" onclick="window.print();return false;">
+                    <div class="fa fa-print" aria-hidden="true"> Print</div>
+                </button>
+                <button class="btn btn-sm btn-outline-dark cent" id="downloadPDF">Generate PDF</button>
+            </div>
+        </div>
         <table id="top">
             <tbody>
             <tr>
+
                 <td>
+
                     <ul style="list-style-type: none;">
                         <li><strong>Contact information</strong></li>
-                        <li>Phone:&nbsp; in PDF file <i class="fa fa-level-up" aria-hidden="true"></i></li>
-                        <li>Email:&nbsp; LutsiukTI@gmail.com</li>
-                        <li>Skype:&nbsp; lutsjukt</li>
+                        <li class="fa fa-phone" aria-hidden="true">&nbsp; <a class="contact-me"
+                                                                             href="tel:067-135-40-40">067-135-40-40</a>
+                        </li>
+                        <br>
+                        <li class="fa fa-envelope" aria-hidden="true">&nbsp; <a class="contact-me"
+                                                                                href="mailto:LutsiukTI@gmail.com">LutsiukTI@gmail.com</a>
+                        </li>
+                        <br>
+                        <li class="fa fa-skype" aria-hidden="true">&nbsp; <a class="contact-me"
+                                                                             href="skype:lutsjukt?call">lutsjukt</a>
+                        </li>
+                        <br>
                     </ul>
+
                 </td>
-                <td id="img"><img src="/img/me_on_cv.jpg" id="img-me-on-cv" alt="..."></td>
+
+                <td id="img" class="print"><img src="/img/me_on_cv.jpg" id="img-me-on-cv" alt="...">
+                    <br>
+                    Taras Lutsiuk
+                </td>
+
             </tr>
             </tbody>
         </table>
-        <p><strong>Profile </strong></p>
-        <p>&emsp;I am from Ivano-Frankivsk, Ukraine. Currently, my main job is selling Stihl products. In my free time I improve my Java programming language skills. On my site you can see open projects in which I participated, as well as learn more about me. I am currently looking for a job as an trainee/junior Java developer.</p>
-        <p><strong>Skills</strong></p>
-        <p>- Work with Java, Spring Boot, Hibernate, Thymeleaf, Linux (Raspbian), Maven, GIT, IDEA, HTML, CSS, JS, Bootstrap, MySQL, Azure, Github actions</p>
-        <p>- Responsive, flexible, strictly following agreements and deadlines. Striving toward continuing professional development in IT.</p>
-        <p><strong>Experience / IT related educational practice</strong></p>
-        <p style="margin: 0;">&emsp;In 2020, I started to improve my Java programming. During the Java Advanced course at the Academy of IT Clusters, my colleague and I developed an interactive conference assistant program, which I deployed in the Azure cloud service.</p>
-        <p style="text-indent: 0ch">Project description: The essence of the project was to create a Spring Boot web application that will ask questions, view already asked questions and increase the rating of already asked questions at conferences with a large audience, where questions are difficult to hear from the speaker or other listeners without additional equipment. dynamics). The administrative part was entrusted to me.</p>
-        <p>&emsp;In early 2020, I decided to write a bot telegram to simplify the search for Stihl products for buyers and sellers of the store where I work. This bot combines the ability to quickly find current prices for goods. The bot also knows how to search for a product by name and searches for a list of similar products, and if necessary, calculates a discount. This bot inspired me to improve my Java programming skill.</p>
-        <p>&emsp;In 2019, I started learning Java at the Academy of IT Clusters, worked with IDEA and GIT, where I wrote my first project. The idea of the project was to create private and public chat rooms. I also studied SQL and Java courses at Sololearn.</p>
-        <p>&emsp;In 2012, I worked as a system administrator at Ivano-Frankivsk University of Oil and Gas. My responsibilities included troubleshooting the computer system, installing and configuring new hardware and software.</p>
-        <p><strong>Education</strong></p>
-        <p>&emsp;MS in Computer Systems and Networks Engineering in the Oil and Gas Industry, Faculty of Information Technologies. (2012)</p>
-        <p>&emsp;College of Electronic Devices IFNTUOG. (2008)</p>
-        <p><strong>Languages</strong></p>
-        <ul>
-            <li>English&mdash;intermediate</li>
-            <li>Russian&mdash;advanced</li>
-            <li>Ukrainian&mdash;native</li>
-        </ul>
+        <main class="print">
+            <p><strong>Profile </strong></p>
+            <p>&emsp;I am from Ivano-Frankivsk, Ukraine. Currently, my main job is selling Stihl products. In my free
+                time I improve my Java programming language skills. On my site you can see open projects in which I
+                participated, as well as learn more about me. I am currently looking for a job as an trainee/junior Java
+                developer.</p>
+            <p><strong>Skills</strong></p>
+            <p>- Work with Java, Spring Boot, Hibernate, Thymeleaf, Linux (Raspbian), Maven, GIT, IDEA, HTML, CSS, JS,
+                Bootstrap, MySQL, Azure, Github actions</p>
+            <p>- Responsive, flexible, strictly following agreements and deadlines. Striving toward continuing
+                professional development in IT.</p>
+            <p><strong>Experience / IT related educational practice</strong></p>
+            <p style="margin: 0;">&emsp;Dates of Employment: February 2021 - Now
+            <p style="margin: 0;">&emsp;Projects: Theater project Spring boot</p>
+            The project is an interactive theater: during the show, viewers can choose one or another plot development, giving their votes for the option they like. The project was over a year old. Most of the team is from Ukraine.
+            <p style="margin: 0;">&emsp; Responsibilities: Development of new improvements, as well as correction of existing bugs.
+            </p>
+            <br>
+            <p style="margin: 0;">&emsp;In 2020, I started to improve my Java programming. During the Java Advanced
+                course at the Academy of IT Clusters, my colleague and I developed an interactive conference assistant
+                program, which I deployed in the Azure cloud service.</p>
+            <p style="text-indent: 0ch">Project description: The essence of the project was to create a Spring Boot web
+                application that will ask questions, view already asked questions and increase the rating of already
+                asked questions at conferences with a large audience, where questions are difficult to hear from the
+                speaker or other listeners without additional equipment. dynamics). The administrative part was
+                entrusted to me.</p>
+            <p>&emsp;In early 2020, I decided to write a bot telegram to simplify the search for Stihl products for
+                buyers and sellers of the store where I work. This bot combines the ability to quickly find current
+                prices for goods. The bot also knows how to search for a product by name and searches for a list of
+                similar products, and if necessary, calculates a discount. This bot inspired me to improve my Java
+                programming skill.</p>
+            <p>&emsp;In 2019, I started learning Java at the Academy of IT Clusters, worked with IDEA and GIT, where I
+                wrote my first project. The idea of the project was to create private and public chat rooms. I also
+                studied SQL and Java courses at Sololearn.</p>
+            <p>&emsp;In 2012, I worked as a system administrator at Ivano-Frankivsk University of Oil and Gas. My
+                responsibilities included troubleshooting the computer system, installing and configuring new hardware
+                and software.</p>
+            <p><strong>Education</strong></p>
+            <p>&emsp;MS in Computer Systems and Networks Engineering in the Oil and Gas Industry, Faculty of Information
+                Technologies. (2012)</p>
+            <p>&emsp;College of Electronic Devices IFNTUOG. (2008)</p>
+            <p><strong>Languages</strong></p>
+            <ul>
+                <li>English&mdash;intermediate</li>
+                <li>Russian&mdash;advanced</li>
+                <li>Ukrainian&mdash;native</li>
+            </ul>
+        </main>
         <p>&emsp;</p>
     </div>
 </div>
-<div th:insert="blocks/footer :: footer"></div>
+<div class="no-print">
+    <div th:insert="blocks/footer :: footer"></div>
+</div>
 </body>
+<script>
+    $('#downloadPDF').click(function () {
+        domtoimage.toPng(document.getElementById('page-about'))
+            .then(function (blob) {
+                var doc = new jsPDF("p", "mm", "a4");
+                doc.addImage(blob, 'PNG', 0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height);
+                doc.save("TarasLutsiuk.pdf");
+                that.options.api.optionsChanged();
+            });
+    });
+</script>
 </html>
