@@ -3,16 +3,13 @@
 <head>
     <title th:text="${page.getTitle()}"/>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-    <link rel="stylesheet" href="/css/print.css" media="print">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
-            integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
 <div class="post-content" id="page-about">
 <div class="container col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12 shadow-sm">
-
+    <form th:action="'/page/edit/' + ${page.id} + '/save'" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="no-print">
             <div style="text-align: center">
                 <button class="btn btn-sm btn-outline-dark cent" onclick="window.print();return false;">
@@ -54,12 +51,10 @@
             </tr>
             </tbody>
         </table>
-    <main th:utext="${page.getFullText()}">
-
-
-    </main>
-    <form th:action="'/page/edit/' + ${page.id}" method="post" sec:authorize="hasAuthority('ADMIN')">
-        <button class="btn btn-sm btn-outline-dark" type="submit">Edit</button>
+        <input id="views" name="title" th:field="${page.title}" class="form-control" type="hidden"/>
+        <label th:for="fullText" style="margin-top: 10px">Full information <small class="text-muted"> *</small></label>
+        <textarea rows="5" id="fullText" style="border-style: outset" type="text" class="form-control" th:field="${page.fullText}" placeholder="Enter full text" required></textarea>
+        <div style="margin-top: 10px"><input type="submit" class="btn btn-outline-dark" value="Save"/></div>
     </form>
     </div>
 </div>
@@ -78,4 +73,5 @@
             });
     });
 </script>
+<script src="/js/edit.js"></script>
 </html>

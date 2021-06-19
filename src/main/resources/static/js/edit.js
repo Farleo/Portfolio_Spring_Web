@@ -23,6 +23,6 @@ $(document).ready(function() {
             previewImage.setAttribute("src", originPhoto);
         }
     });
-    $("#info").richText();
-    $("#fullText").richText();
 });
+$("#info").richText();
+$("#fullText").richText();
