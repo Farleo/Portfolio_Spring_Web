@@ -14,13 +14,14 @@ import tk.lutsiuk.web.service.PageService;
 public class MainController {
 	
 	public static final String ABOUT_ME_PAGE = "Lutsiuk Taras - About me";
+	public static final String MAIN_PAGE = "Lutsiuk Taras";
 	
 	@Autowired
 	private PageService pageService;
 	
 	@GetMapping("/")
 	public String main(Model model) {
-		model.addAttribute("title", "Lutsiuk Taras");
+		model.addAttribute("page", pageService.findByTitle(MAIN_PAGE));
 		return "main";
 	}
 	
@@ -33,7 +34,7 @@ public class MainController {
 	@PostMapping("/page/edit/{id}")
 	public String pageEdit(@PathVariable Long id, Model model) {
 		model.addAttribute("page", pageService.findById(id));
-		return "about-edit";
+		return "edit";
 	}
 	
 	@PostMapping("/page/edit/{id}/save")

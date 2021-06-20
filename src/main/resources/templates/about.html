@@ -21,42 +21,7 @@
                 <button class="btn btn-sm btn-outline-dark cent" id="downloadPDF">Generate PDF</button>
             </div>
         </div>
-
-        <table id="top">
-            <tbody>
-            <tr>
-
-                <td>
-
-                    <ul style="list-style-type: none;">
-                        <li><strong>Contact information</strong></li>
-                        <li class="fa fa-phone" aria-hidden="true">&nbsp; <a class="contact-me"
-                                                                             href="tel:067-135-40-40">067-135-40-40</a>
-                        </li>
-                        <br>
-                        <li class="fa fa-envelope" aria-hidden="true">&nbsp; <a class="contact-me"
-                                                                                href="mailto:LutsiukTI@gmail.com">LutsiukTI@gmail.com</a>
-                        </li>
-                        <br>
-                        <li class="fa fa-skype" aria-hidden="true">&nbsp; <a class="contact-me"
-                                                                             href="skype:lutsjukt?call">lutsjukt</a>
-                        </li>
-                        <br>
-                    </ul>
-
-                </td>
-
-                <td id="img" class="print"><img src="/img/me_on_cv.jpg" id="img-me-on-cv" alt="...">
-                    <br>
-                    Taras Lutsiuk
-                </td>
-
-            </tr>
-            </tbody>
-        </table>
     <main th:utext="${page.getFullText()}">
-
-
     </main>
     <form th:action="'/page/edit/' + ${page.id}" method="post" sec:authorize="hasAuthority('ADMIN')">
         <button class="btn btn-sm btn-outline-dark" type="submit">Edit</button>

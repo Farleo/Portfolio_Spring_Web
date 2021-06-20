@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${page.getTitle()}"/>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="post-content" id="page-about">
+<div class="container col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12 shadow-sm">
+    <form th:action="'/page/edit/' + ${page.id} + '/save'" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <input id="title" name="title" th:field="${page.title}" class="form-control" type="hidden"/>
+        <textarea rows="5" id="fullText" style="border-style: outset" type="text" class="form-control" th:field="${page.fullText}" placeholder="Enter full text" required></textarea>
+        <div style="margin-top: 10px"><input type="submit" class="btn btn-outline-dark" value="Save"/></div>
+    </form>
+    </div>
+</div>
+<div class="no-print">
+    <div th:insert="blocks/footer :: footer"></div>
+</div>
+</body>
+<script src="/js/edit.js"></script>
+</html>

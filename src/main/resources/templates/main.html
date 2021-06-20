@@ -1,25 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${title}"/>
+    <title th:text="${page.title}"/>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
 <div class="container col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12 shadow-sm">
-    <div class="post-content" id="page-main">
-        <div>
-            <img src="/img/me.jpg" id="img-me-main" alt="...">
-            <h3>Hi, I'm Taras.</h3>
-            <p>
-            I am from Ivano-Frankivsk, Ukraine. Currently, my main job is selling Stihl products. In my free time I improve my Java programming language skills. On this site you can see open projects in which I participated, as well as learn more about me. I am currently looking for a job as an intern / junior Java developer.
-            </p>
-        </div>
-        <div id="after-photo">
-            <p>More information is in my resume, which you can find in the section <a href="/about">about me.</a>
-            <p>I will be glad to new acquaintances and interesting offers.</p>
-        </div>
-    </div>
+
+    <main th:utext="${page.getFullText()}">
+
+    </main>
+    <form th:action="'/page/edit/' + ${page.id}" method="post" sec:authorize="hasAuthority('ADMIN')">
+        <button class="btn btn-sm btn-outline-dark" type="submit">Edit</button>
+    </form>
 </div>
 <div th:insert="blocks/footer :: footer"></div>
 </body>
